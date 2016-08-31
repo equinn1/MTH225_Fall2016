@@ -1,0 +1,13 @@
+\documentclass{article}
+
+\begin{document}
+
+This short document will test whether knitr, R, LaTeX, and your pdf viewer are working.
+
+<<>>=
+x<-rbinom(100,10,0.4)    #100 observations from a binomial distribution
+hist(x)
+@
+
+
+\end{document}
