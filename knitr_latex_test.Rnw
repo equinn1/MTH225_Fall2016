@@ -1,0 +1,12 @@
+\documentclass{article}
+
+\begin{document}
+
+This short document will test whether knitr, LaTeX, and your pdf viewer are working.
+
+\[
+x = \frac{-b\pm\sqrt{b^2-4ac}}{2a}
+\]
+
+
+\end{document}
