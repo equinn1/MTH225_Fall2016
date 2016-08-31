@@ -1,0 +1,21 @@
+\documentclass{article}
+
+\begin{document}
+
+<<>>=
+N<-100
+y<-rbinom(100,10,0.4)     #100 binomial random variates N=10 p=0.4
+@
+
+<<>>=
+library("rstan");
+rstan_options(auto_write = TRUE)
+options(mc.cores = parallel::detectCores())
+
+stanfit <- stan("stan_test.stan")
+print(stanfit);
+print(get_stanmodel(stanfit))
+@
+
+
+\end{document}
