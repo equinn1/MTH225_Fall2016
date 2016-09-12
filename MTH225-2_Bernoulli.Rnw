@@ -12,11 +12,17 @@
 \par\vspace{0.3 cm}\noindent
 \subsection{MTH225-2 In-class Exercise 1: Estimating the probability of success in a Bernoulli trial}
 \par\vspace{0.3 cm}\noindent
+A \textit{Bernoulli Trial} is a model for an experiment with two outcomes, usually labeled "success" and "failure".
+\par\vspace{0.3 cm}\noindent
+In this exercise, we will assume that using traps we collected five different samples of mosquitoes, and we are interested in determining the prevalence of the Zika virus in the mosquito population.
+\par\vspace{0.3 cm}
+We will model each insect in a given trap as a Bernoulli trial, with the two outcomes being "Zika" and "No Zika".  In the data, "Zika" is indicated by $1$, "No Zika" is indicated by $0$.
+\par\vspace{0.3 cm}
 Instructions:
 \par\vspace{0.3 cm}\noindent
 \begin{itemize}
 \item Click on the "Compile PDF" icon and see if this program will run.
-\item If it does, modify the statement that assigns a column of the data frame \texttt{df} to the variable \texttt{y} so that it assigns the column containing your group's data.  The column names will be listed in the output from step 1.
+\item If it does, find the statement that assigns a column of the data frame \texttt{df} to the variable \texttt{y} and modify it so that it assigns the column containing your group's data.  The column names will be listed in the output from step 1.
 \item With the modified Rnw file, click on "Compile PDF"
 \item Use the output to answer the questions.
 \end{itemize}
@@ -39,7 +45,7 @@ print(stanfit)
 \par\vspace{0.3 cm}\noindent
 In the "Inference for Stan model" section,
 \par\vspace{0.3 cm}\noindent
-What is the mean of the post-warmup draws for the parameter p?
+What is the mean of the post-warmup draws for the parameter p, the probability of "Zika"?
 \par\vspace{2 cm}\noindent
 What is the lower end of the 95\% credible interval for p? 
 \par\vspace{2 cm}\noindent
