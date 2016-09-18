@@ -1,0 +1,42 @@
+\documentclass{article}
+
+\begin{document}
+\section*{In-class exercise: One Bernoulli sample vs a hypothetical value}
+\textbf{Names:} (signatures only please, printed names will not be counted)
+\par\vspace{0.3 cm}\noindent
+\begin{tabular}{ll}
+1.)$\hspace{8 cm}$&4.)\\\\
+2.)&5.)\\\\
+3.)&6.)
+\end{tabular}
+\par\vspace{0.3 cm}\noindent
+\subsection*{Overview}
+\par\vspace{0.3 cm}\noindent
+In this exercise we suppose we have the results of a small clinical trial for  an experimental drug.
+\par\vspace{0.3 cm}\noindent
+We are interested in whether the proportion of patients treated with the new drug that recover is higher than 0.15, the recovery rate for the best existing treatment.  
+\par\vspace{0.3 cm}
+Specifically, we want to estimate the probability, based on the samples we have and an uniformative (uniform) prior, that the rate of recovery is greater than 0.15.
+\par\vspace{0.3 cm}
+We will model the individual patients as Bernoulli trials, with the parameter $p$ representing the probability that the subject recovers. 
+\par\vspace{0.3 cm}
+STAN will simulate drawing 4,000 value from the (posterior) probability distribution of $p$.  Based on this draw, we will estimate the probability that $p$ is greater than $0.15$ by computing the proportion of the 4,000 pairs of values for which this is true.
+\par\vspace{0.3 cm}
+\subsection*{Instructions}
+\par\vspace{0.3 cm}
+As usual, start by bringing your copy of the \texttt{$\mbox{MTH225\_Fall2016}$} archive up to date.  
+\par\vspace{0.3 cm}
+Open a command prompt or terminal window, and use the \texttt{cd} command to change to the \texttt{$\mbox{MTH225\_Fall2016}$} subdirectory.  Then type the command:
+\par\vspace{0.3 cm}\noindent
+\texttt{git pull origin master}
+\par\vspace{0.3 cm}\noindent
+Start Rstudio and open the file \texttt{$\mbox{MTH225-3\_Bernoulli\_one\_sample\_hypothetical.Rnw}$}
+\par\vspace{0.3 cm}\noindent
+\begin{itemize}
+\item Click on the "Compile PDF" icon to run the program.
+\item Use the output to answer the questions.
+\item Print the output, have each member of the team sign in, and hand it in.
+\end{itemize}
+\par\vspace{0.3 cm}
+
+\end{document}
