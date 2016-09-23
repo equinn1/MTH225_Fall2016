@@ -1,0 +1,25 @@
+\documentclass{article}
+
+\begin{document}
+
+<<>>=
+y<-0
+N<-length(y)
+@
+
+<<>>=
+library("rstan");
+rstan_options(auto_write = TRUE)
+options(mc.cores = parallel::detectCores())
+
+stanfit <- stan("Bernoulli_example.stan",iter=20000)
+print(stanfit);
+print(get_stanmodel(stanfit))
+@
+
+<<>>=
+library("shinystan")
+launch_shinystan(stanfit)
+@
+
+\end{document}
