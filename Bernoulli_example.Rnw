@@ -3,8 +3,12 @@
 \begin{document}
 
 <<>>=
-y<-0
+y<-c(1,0,0,0,0,0,0,1,0,0,0,0)
 N<-length(y)
+N_start=2;
+N_end=2;
+N_ones=0;
+N_zeros=0;
 @
 
 <<>>=
