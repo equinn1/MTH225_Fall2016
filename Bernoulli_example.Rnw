@@ -26,4 +26,9 @@ library("shinystan")
 launch_shinystan(stanfit)
 @
 
+<<>>=
+str(stanfit)
+str(stanfit@sim$samples)
+@
+
 \end{document}
