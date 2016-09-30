@@ -1,0 +1,39 @@
+\documentclass{article}
+
+\begin{document}
+Week1 IC1 Example
+<<>>=
+load("Single_factor_two_levels.Rdata")
+ls()
+@
+
+Call STAN
+<<>>=
+library(rstan)                                #make sure rstan is available
+rstan_options(auto_write = TRUE)              #use multiple cores
+options(mc.cores = parallel::detectCores())   #if we have them
+stanfit<-stan("Single_factor_two_levels.stan")       #call STAN using defaults
+print(stanfit)
+@
+Launch shinystan
+<<>>=
+library(shinystan)
+launch_shinystan(stanfit)
+@
+Post processing
+<<>>=
+post<-extract(stanfit)   #extract the values drawn from the posterior distribution
+
+str(post)                #list the structure of the extracted data
+
+n_diff = length(post$diff)   #count the number of differences drawn
+n_diff
+
+n_mu1_greater<-sum(as.numeric(post$diff>0))  #count the number of draws with $mu1$ greater than $mu2$
+n_mu1_greater
+
+p<-n_mu1_greater/n_diff   #estimated probability that mu1 is greater than mu2
+p                        
+@
+
+\end{document}
