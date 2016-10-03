@@ -22,8 +22,15 @@ generated quantities {
   real d12;
   real d13;
   real d23;
+  int p12;
+  int p13;
+  int p23;
   
   d12 = alpha[1]-alpha[2];    //sample difference between alpha1 and alpha2
   d13 = alpha[1]-alpha[3];    //sample difference between alpha1 and alpha3
   d23 = alpha[2]-alpha[3];    //sample difference between alpha2 and alpha3
+  
+  if (alpha[1]>alpha[2]) p12=1; else p12=0;
+  if (alpha[1]>alpha[3]) p13=1; else p13=0;
+  if (alpha[2]>alpha[3]) p23=1; else p23=0;
 }

@@ -20,6 +20,8 @@ model {
 }
 generated quantities {
   real d12;
+  int p12;
   
   d12 = alpha[1]-alpha[2];    //sample difference between alpha1 and alpha2
+  if (alpha[1]>alpha[2]) p12=1; else p12=0;
 }
