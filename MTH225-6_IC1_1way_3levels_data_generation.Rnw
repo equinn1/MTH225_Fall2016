@@ -1,0 +1,42 @@
+\documentclass{article}
+
+\begin{document}
+
+\section*{Single-factor ANOVA with three levels - equal variance at each level}
+Data characteristics:
+\par\vspace{0.4 cm}
+\begin{itemize}
+\item Data is classified by two levels of a single factor
+\item Error variance is the same at both levels
+\end{itemize}
+
+<<>>=
+set.seed(12345678)                      #set seed so we can rerun and get same results
+N1=15                                   #15 values at level 1 of factor 1
+N2=15                                   #15 values at level 2 of factor 1
+N3=15                                   #15 values at level 3 of factor 1
+N<-N1+N2+N3
+sigma_e=10                           #residual standard error is 6
+lvl<-c(rep(1,N1),rep(2,N2),rep(3,N3))
+alpha<-rnorm(3,10,8)
+y1<-c(rep(alpha[1],N1),rep(alpha[2],N2),rep(alpha[3],N3))+rnorm(N,0,sigma_e)
+alpha<-rnorm(3,10,8)
+y2<-c(rep(alpha[1],N1),rep(alpha[2],N2),rep(alpha[3],N3))+rnorm(N,0,sigma_e)
+alpha<-rnorm(3,10,8)
+y3<-c(rep(alpha[1],N1),rep(alpha[2],N2),rep(alpha[3],N3))+rnorm(N,0,sigma_e)
+alpha<-rnorm(3,10,8)
+y4<-c(rep(alpha[1],N1),rep(alpha[2],N2),rep(alpha[3],N3))+rnorm(N,0,sigma_e)
+alpha<-rnorm(3,10,8)
+y5<-c(rep(alpha[1],N1),rep(alpha[2],N2),rep(alpha[3],N3))+rnorm(N,0,sigma_e)
+df<-data.frame(lvl,y1,y2,y3,y4,y5)
+write.csv(df,file="MTH225-6_IC1_data.csv")
+@
+
+<<>>=
+summary(aov(y1~as.factor(lvl)))
+summary(aov(y2~as.factor(lvl)))
+summary(aov(y3~as.factor(lvl)))
+summary(aov(y4~as.factor(lvl)))
+summary(aov(y5~as.factor(lvl)))
+@
+\end{document}
