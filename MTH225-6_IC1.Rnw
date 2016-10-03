@@ -1,0 +1,24 @@
+\documentclass{article}
+
+\begin{document}
+
+<<>>=
+# R code to read file and set up call to STAN goes here
+@
+
+Call STAN
+<<>>=
+library(rstan)                                #make sure rstan is available
+rstan_options(auto_write = TRUE)              #use multiple cores
+options(mc.cores = parallel::detectCores())   #if we have them
+stanfit<-stan("ANOVA_example_1way_3levels.stan")       #call STAN using defaults
+print(stanfit)
+@
+
+Launch shinystan
+
+<<>>=
+library(shinystan)
+launch_shinystan(stanfit)
+@
+\end{document}
