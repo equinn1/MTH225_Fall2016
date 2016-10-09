@@ -6,7 +6,7 @@ data {
 }
 parameters {
   real alpha[2];                //alpha : parameters for means at level 1 and level 2
-  real<lower=0> sigma_e[2];     //sigma:  parameters for standard deviations at level 1 and level 2
+  real<lower=0> sigma[2];       //sigma:  parameters for standard deviations at level 1 and level 2
 }
 model {
   int j;
@@ -15,7 +15,7 @@ model {
   
   for (i in 1:N){               //loop through y values
     j=lvl[i];
-    y[i] ~ normal(alpha[level[i]],sigma_e[j]);  //y[j] has normal likelihood with mean alpha[j] and std deviation sigma[j]
+    y[i] ~ normal(alpha[j],sigma[j]);  //y[j] has normal likelihood with mean alpha[j] and std deviation sigma[j]
   }
 }
 generated quantities {
