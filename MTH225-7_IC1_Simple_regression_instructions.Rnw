@@ -1,0 +1,39 @@
+\documentclass{article}
+
+\begin{document}
+\section{MTH225-7 IC1: Simple regression}
+\textbf{Names:} (signatures only please, printed names will not be counted)
+\par\vspace{0.3 cm}\noindent
+\begin{tabular}{ll}
+1.)$\hspace{8 cm}$&4.)\\\\
+2.)&5.)\\\\
+3.)&6.)
+\end{tabular}
+\par\vspace{0.3 cm}\noindent
+\subsection{Overview}
+The EPA gas mileage estimates resulted in the phrase "Your actual mileage will vary" being added to the vernacular.
+\par\vspace{0.3 cm}\noindent
+In this exercise we will use a regression model and the 2009 EPA gas mileage data to estimate the effect of vehicle weight on gas mileage.
+\par\vspace{0.3 cm}\noindent
+We will use the posterior draw (the stanfit data structure) to construct a 95\% confidence interval for the \textbf{predicted} gas mileage of vehicles that weigh 3500 pounds and 5400 pounds.
+\par\vspace{0.3 cm}
+\subsection{Instructions}
+\par\vspace{0.3 cm}
+As usual, start by brining your copy of the MTH225\_Fall2016 up to date using git:  Open a command prompt or terminal window and use the \texttt{cd} command to change to the \texttt{MTH225\_Fall2016} subdirectory.  Once there, type the following command:
+\par\vspace{0.3 cm}\noindent
+\texttt{git pull origin master}
+\par\vspace{0.3 cm}\noindent
+\begin{itemize}
+\item Open the file \texttt{MTH225-7\_IC1\_Simple\_regression.Rnw}
+\item Click on the "Compile PDF" icon and see if this program will run as is.
+\item Modify the section that processes the posterior draw to compute 95\% confidence intervals for the predicted mileage of vehicles weighing 3500 and 5400 pounds.
+\item With the modified Rnw file, click on "Compile PDF"
+\item Use the output to answer the questions.
+\end{itemize}
+\par\vspace{0.3 cm}\noindent
+\textbf{1)} How would you interpret the slope of the regression line in this problem?
+\par\vspace{3 cm}\noindent
+\textbf{2)} One way to improve mpg is to reduce weight.  What does the intercept tell you about the limitations of this strategy?
+\par\vspace{3 cm}\noindent
+\textbf{3)} What are the 95\% confidence limits for the predicted mpg of 3500 and 5400 pound vehicles?
+\end{document}
