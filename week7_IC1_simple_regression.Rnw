@@ -38,4 +38,35 @@ mpg4000<-post_draw$icpt+4.0*post_draw$slope
 quantile(mpg4000,c(0.025,0.5,0.975))
 @
 
+<<>>=
+library(reshape2)
+library(ggplot2)
+wt<-seq(2.5,by=0.2,length.out=20)
+Nwt=length(wt)
+Ndraw=length(post_draw$icpt)
+ydf<-data.frame(wt)
+
+for (i in 1:75){
+  ydf<-cbind(ydf,post_draw$icpt[[i]]+wt*post_draw$slope[[i]])
+}
+ynames=c("wt",rep("y",75))
+for (i in 2:76){
+  ynames[[i]]=paste("y",as.character(i),sep="")
+}
+str(ynames)
+names(ydf)<-ynames
+str(ydf)
+test_data_long <- melt(ydf, id="wt")  # convert to long format
+str(test_data_long)
+
+ggplot(data=test_data_long,
+       aes(x=wt, y=value, colour=variable)) +
+       geom_line()
+@
+
+<<>>=
+library(shinystan)
+launch_shinystan(stanfit)
+@
+
 \end{document}
