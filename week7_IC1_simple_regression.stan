@@ -11,7 +11,8 @@ parameters {
 }
 model {
   icpt ~ normal(30,20);        //normal priors for slope includes all reasonable mileage values
-  slope ~ normal(0,0.2);       //slope will be very small with small standard deviation if weight is in pounds
+//slope ~ normal(0,0.2); //slope will be very small with small standard deviation if weight is in pounds
+  slope ~ normal(0,10);        //weakly informative - slope should be between 0 and 10 
   sigma ~ cauchy(0,5);         //half-Cauchy prior for residual standard error
   
   for (i in 1:N){                   //loop through y values
