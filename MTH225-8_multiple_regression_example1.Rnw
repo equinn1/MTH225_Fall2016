@@ -1,0 +1,42 @@
+\documentclass{article}
+
+\begin{document}
+Multiple regression example
+<<>>=
+load("EPA_mileage.Rdata")
+str(epa)
+@
+Select city records only:
+<<>>=
+epacity<-subset(epa,C.H=='C')  #select city mileage - C.H must be 'C' for city
+nrow(epacity)
+wt<-epacity$etw/1000      #etw has vehicle weight
+hp<-epacity$rhp/100       #rhp has horsepower
+axle<-epacity$axle        #axle gear ratio
+mpg<-epacity$mpg          #mpg has miles per gallon
+N<-nrow(epacity)          #number of observations
+mean(mpg)
+sd(mpg)
+@
+Ordinary least squares regression
+<<>>=
+lm2<-lm(mpg~wt+hp+axle)
+summary(lm2)
+@
+Call STAN
+<<>>=
+library(rstan)                                #make sure rstan is available
+rstan_options(auto_write = TRUE)              #use multiple cores
+options(mc.cores = parallel::detectCores())   #if we have them
+stanfit<-stan("MTH225-8_multiple_regression_example1.stan")     #call STAN using defaults
+print(stanfit)
+print(get_stanmodel(stanfit))
+Sys.info()[["user"]]
+@
+Launch shinystan
+<<>>=
+library(shinystan)                                   #launch shinystan
+launch_shinystan(stanfit)                            
+@
+
+\end{document}
