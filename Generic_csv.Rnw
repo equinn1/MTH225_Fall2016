@@ -1,0 +1,42 @@
+\documentclass{article}
+
+\begin{document}
+
+Generic R code to read a .csv file and call stan
+<<>>=
+df<-read.csv("some_data.csv")        #put actual dataset name in quotes
+
+str(df)                              #display the structure of the dataframe
+N<-nrow(df)                          #set N to the number of rows in the dataframe
+@
+
+Call STAN
+<<>>=
+library(rstan)                                #set up call to stan
+rstan_options(auto_write = TRUE)              #use multiple cores if we have them
+options(mc.cores = parallel::detectCores())   #
+
+stanfit<-stan("some_model_file.stan")         #put actual model file name in quotes
+
+print(stanfit)                                #print summary of results
+
+print(get_stanmodel(stanfit))                 #show the model code for documentation
+
+Sys.info()[["user"]]                          #show who ran this
+@
+
+Shinystan
+<<>>=
+library(shinystan)
+
+#launch_shinystan(stanfit)                    #uncomment by deleting pound sign in first column
+@
+
+Post processing
+<<>>=
+parms<-extract(stanfit)                       #extract posterior draws for parameters
+
+str(parms)                                    #display structure of posterior draws
+
+@
+\end{document}
