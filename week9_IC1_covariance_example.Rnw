@@ -1,0 +1,65 @@
+\documentclass{article}
+
+\begin{document}
+Week8 IC1 example
+<<>>=
+load("EPA_mileage.Rdata")          #load the Rdata file with EPA mileage data
+str(epa)
+@
+
+<<>>=
+subset<-epa[epa$C.H=='H',]                   #select highway mileage only
+cartruck<-as.numeric(subset$car.truck=='C')  #build binary indicator for car or truck: 1 car 0 truck
+N<-nrow(subset)                              #number of observations
+weight<-subset$etw/1000                      #vehicle weight in thousands of pounds
+mpg<-subset$mpg                              #gas mileage
+@
+Ordinary least squares model
+<<>>=
+lm2<-lm(mpg~subset$car.truck+weight)         #classical least squares model
+summary(lm2)                                  #standard summary of results
+plot(lm2$fitted.values~weight)                #plot signal part
+@
+Call STAN for Bayesian model
+<<>>=
+library(rstan)                                #make sure rstan is available
+rstan_options(auto_write = TRUE)              #use multiple cores
+options(mc.cores = parallel::detectCores())   #if we have them
+stanfit<-stan("week9_IC1_covariance_example.stan")     #call STAN using defaults
+print(stanfit)
+@
+Launch shinystan
+<<>>=
+library(shinystan)                                   #launch shinystan
+launch_shinystan(stanfit)                            
+@
+
+<<>>=
+pd<-extract(stanfit)                           #extract posterior draw
+mean(pd$car-pd$truck)                          #mean difference between cars and trucks
+sum(pd$truck>pd$car)/length(pd$car)            #probability(car>truck)
+quantile(pd$car-pd$truck,c(0.025,0.975))
+@
+
+Ordinary least squares model
+<<>>=
+lm2<-lm(mpg~subset$car.truck)         #classical least squares model
+summary(lm2)                                  #standard summary of results
+@
+
+Call STAN for no-covariate model
+<<>>=
+library(rstan)                                #make sure rstan is available
+rstan_options(auto_write = TRUE)              #use multiple cores
+options(mc.cores = parallel::detectCores())   #if we have them
+stanfit<-stan("week9_IC1_no_covariate_example.stan")     #call STAN using defaults
+print(stanfit)
+@
+
+<<>>=
+pd<-extract(stanfit)                           #extract posterior draw
+mean(pd$car-pd$truck)                          #mean difference between cars and trucks
+sum(pd$truck>pd$car)/length(pd$car)            #probability(car>truck)
+quantile(pd$car-pd$truck,c(0.025,0.975))
+@
+\end{document}
