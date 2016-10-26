@@ -1,0 +1,46 @@
+\documentclass{article}
+
+\begin{document}
+\section*{In-class exercise: Covariance analysis: two levels, one covariate}
+\textbf{Names:} (signatures only please, printed names will not be counted)
+\par\vspace{0.3 cm}\noindent
+\begin{tabular}{ll}
+1.)$\hspace{8 cm}$&4.)\\\\
+2.)&5.)\\\\
+3.)&6.)
+\end{tabular}
+\par\vspace{0.3 cm}\noindent
+\subsection*{Overview}
+\par\vspace{0.3 cm}\noindent
+In this exercise we suppose we examine the difference in highway gas mileage between cars and trucks in models with and without weight as a covariate.
+\par\vspace{0.3 cm}\noindent
+\par\vspace{0.3 cm}
+\subsection*{Instructions}
+\par\vspace{0.3 cm}
+As usual, start by bringing your copy of the \texttt{$\mbox{MTH225\_Fall2016}$} archive up to date.  
+\par\vspace{0.3 cm}
+Open a command prompt or terminal window, and use the \texttt{cd} command to change to the \texttt{$\mbox{MTH225\_Fall2016}$} subdirectory.  Then type the command:
+\par\vspace{0.3 cm}\noindent
+\texttt{git pull origin master}
+\par\vspace{0.3 cm}\noindent
+The pull operation should download the following files:
+\par\vspace{0.4 cm}
+\begin{itemize}
+\item The R-knitr code: \texttt{week9\_IC2\_covariance\_example.Rnw}  
+\item The data in Rdata format: \texttt{EPA\_mileage.Rdata} 
+\item The STAN model file 1 \texttt{week9\_IC2\_covariance\_example.stan}
+\end{itemize}
+\par\vspace{0.3 cm}
+In this exercise, the data file is in Rdata format, which you read with a \texttt{load} command.  The .Rnw file is set up to do this, you should not have to modify it or the .stan files.
+
+\subsection*{Questions}
+Use the \textit{Compile PDF} button to run the model, and use the output to answer the following questions:
+\par\vspace{0.3 cm}\noindent
+1) In the model with weight as a covariate and separate slopes for cars and trucks, what is the estimated mean difference between the intercept terms for cars and trucks, and what is the 95\% confidence interval for the difference?
+\par\vspace{2 cm}\noindent
+2) What is the estimated mean difference between the slopes for cars and trucks, and the 95\% confidence interval for the difference?
+\par\vspace{2 cm}\noindent
+3) What is the estimate of the difference in error standard deviation for cars and trucks, and the 95\% confidence interval for the difference?
+\par\vspace{2 cm}\noindent
+4) How would you explain the relationship between mpg for cars and trucks for this model?
+\end{document}
