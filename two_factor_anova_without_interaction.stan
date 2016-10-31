@@ -8,7 +8,7 @@ data {
 parameters {
   real alpha[2];                //Parameters for each level of the first factor
   real beta[2];                 //Parameters for each level of the second factor
-  real<lower=0> sigma_e;        //common error standard deviation
+  real<lower=0> sigma;        //common error standard deviation
 }
 model {
   int j;
@@ -18,15 +18,15 @@ model {
   sigma ~ cauchy(0,10);         //half-cauchy prior for error standard deviation 
   
   for (i in 1:N){                   //loop through y values
-    j<-level1[i];
-    k<-level2[i];
-    y[i] ~ normal(alpha[j]+beta[k],sigma_e);  //y[j] has normal likelihood with mean alpha[j]+beta[k] and std deviation sigma
+    j = level1[i];
+    k = level2[i];
+    y[i] ~ normal(alpha[j]+beta[k],sigma);  //y[j] has normal likelihood with mean alpha[j]+beta[k] and std deviation sigma
   }
 }
 generated quantities {
   real d12a;
   real d12b;
   
-  d12a<-alpha[1]-alpha[2];    //posterior draw difference between alpha1 and alpha2
-  d12b<-beta[1]-beta[2];      //posterior draw difference between alpha1 and alpha2
+  d12a = alpha[1]-alpha[2];    //posterior draw difference between alpha1 and alpha2
+  d12b = beta[1]-beta[2];      //posterior draw difference between alpha1 and alpha2
 }
