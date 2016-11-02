@@ -1,0 +1,56 @@
+\documentclass{article}
+
+\begin{document}
+Week10IC1 Two-way ANOVA with interaction (cell mean model)
+<<>>=
+load("EPA_mileage.Rdata")
+str(epa)
+@
+Separate cars and trucks:
+<<>>=
+cartruck<-epa$car.truck
+cityhwy<-epa$C.H
+mpg<-epa$mpg          #mpg has miles per gallon
+N<-nrow(epa)
+level1<-as.numeric(cartruck)
+level2<-as.numeric(cityhwy)
+y<-mpg
+@
+Ordinary least squares anova
+<<>>=
+lm1<-aov(mpg~cartruck*cityhwy)
+summary(lm1)
+@
+
+Call STAN
+<<>>=
+library(rstan)                                #make sure rstan is available
+rstan_options(auto_write = TRUE)              #use multiple cores
+options(mc.cores = parallel::detectCores())   #if we have them
+stanfit<-stan("two_factor_anova_with_interaction.stan")     #call STAN using defaults
+print(stanfit)
+@
+
+Post processing
+<<>>=
+pd<-extract(stanfit)
+quantile(pd$alpha[,2]-pd$alpha[,1],c(0.025,0.5,0.975))   #hwy-city (car) 
+quantile(pd$alpha[,4]-pd$alpha[,3],c(0.025,0.5,0.975))   #hwy-city (truck) 
+quantile(pd$alpha[,1]-pd$alpha[,3],c(0.025,0.5,0.975))   #car-truck (city) 
+quantile(pd$alpha[,2]-pd$alpha[,4],c(0.025,0.5,0.975))   #car-truck (hwy) 
+
+#interaction - is hwy-city greater for cars than trucks?
+sum((pd$alpha[,2]-pd$alpha[,1])>(pd$alpha[,4]-pd$alpha[,3]))/length(pd$alpha[,1])
+
+#interaction - is car-truck greater for highway than city?
+sum((pd$alpha[,2]-pd$alpha[,4])>(pd$alpha[,1]-pd$alpha[,3]))/length(pd$alpha[,1])
+@
+
+Launch shinystan
+<<>>=
+library(shinystan)                                   #launch shinystan
+#launch_shinystan(stanfit)                            
+@
+
+
+\end{document}
