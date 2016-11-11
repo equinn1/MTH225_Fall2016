@@ -10,7 +10,8 @@ parameters {
 model {
   p ~ uniform(0,1);             //uniform prior for p
   for (i in 1:N){
-    y[i] ~ binomial(trials[i],p)
+    y[i] ~ binomial(trials[i],p);
   }
 }
+
 
