@@ -1,0 +1,72 @@
+\documentclass{article}
+
+\begin{document}
+\section*{In-class exercise: Week 11 stanfit exercise}
+\textbf{Names:} (signatures only please, printed names will not be counted)
+\par\vspace{0.3 cm}\noindent
+\begin{tabular}{ll}
+1.)$\hspace{8 cm}$&4.)\\\\
+2.)&5.)\\\\
+3.)&6.)
+\end{tabular}
+\par\vspace{0.3 cm}\noindent
+\subsection*{Overview}
+\par\vspace{0.3 cm}\noindent
+In this exercise you are given four \texttt{stanfit} objects stored in binary R (\texttt{.Rdata}) files.  
+\par\vspace{0.3 cm}\noindent
+The file names are:
+\begin{itemize}
+\item \texttt{week11\_stanfit\_exercise\_p1.Rdata} stanfit file 1
+\item \texttt{week11\_stanfit\_exercise\_p2.Rdata} stanfit file 2
+\item \texttt{week11\_stanfit\_exercise\_p3.Rdata} stanfit file 3
+\item \texttt{week11\_stanfit\_exercise\_p4.Rdata} stanfit file 4
+\end{itemize}
+\par\vspace{0.3 cm}\noindent
+Use the \texttt{load()} function with each filename in succession to load the \texttt{stanfit} object into the R workspace, and use it to answer the questions below.
+\par\vspace{0.3 cm}\noindent
+If you have included the statement \texttt{library(rstan)} you will have the \texttt{get\_stanmodel()} and \texttt{print()} functions available.  After you have loaded the stanfit object, use these functions to display the information contained in the \texttt{stanfit} object.
+\par\vspace{0.3 cm}
+\subsection*{Stanfit file 1}
+1) What type of analysis was performed?
+\par\vspace{2 cm}\noindent
+2) What are the names of the parameters in the model?
+\par\vspace{2 cm}\noindent
+3) What priors are being used for the parameters?
+\par\vspace{2 cm}\noindent
+4) What distribution is being used for the likelihood part of the model?
+\par\vspace{2 cm}\noindent
+5) What are the means and 95\% confidence intervals for the parameter(s)?
+\par\vspace{2 cm}\noindent
+\subsection*{Stanfit file 2}
+1) What type of analysis was performed?
+\par\vspace{2 cm}\noindent
+2) What are the names of the parameters in the model?
+\par\vspace{2 cm}\noindent
+3) What priors are being used for the parameters?
+\par\vspace{2 cm}\noindent
+4) What distribution is being used for the likelihood part of the model?
+\par\vspace{2 cm}\noindent
+5) What are the means and 95\% confidence intervals for the parameter(s)?
+\par\vspace{3 cm}
+\subsection*{Stanfit file 3}
+1) What type of analysis was performed?
+\par\vspace{2 cm}\noindent
+2) What are the names of the parameters in the model?
+\par\vspace{2 cm}\noindent
+3) What priors are being used for the parameters?
+\par\vspace{2 cm}\noindent
+4) What distribution is being used for the likelihood part of the model?
+\par\vspace{2 cm}\noindent
+5) What are the means and 95\% confidence intervals for the parameter(s)?
+\par\vspace{3 cm}
+\subsection*{Stanfit file 4}
+1) What type of analysis was performed?
+\par\vspace{2 cm}\noindent
+2) What are the names of the parameters in the model?
+\par\vspace{2 cm}\noindent
+3) What priors are being used for the parameters?
+\par\vspace{2 cm}\noindent
+4) What distribution is being used for the likelihood part of the model?
+\par\vspace{2 cm}\noindent
+5) What are the means and 95\% confidence intervals for the parameter(s)?
+\end{document}
