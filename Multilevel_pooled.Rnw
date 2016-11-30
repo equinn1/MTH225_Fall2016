@@ -21,20 +21,25 @@ options(mc.cores = parallel::detectCores())
 <<>>=
 stanfit<-stan("Radon_pooled.stan")
 print(stanfit)
-launch_shinystan(stanfit)
+#launch_shinystan(stanfit)
 @
 
 <<>>=
-pooled_sample<-extract(stanfit)
-str(pooled_sample)
+pd<-extract(stanfit)
+str(pd)
 
-basement<-pooled_sample$ypred0
-first_floor<-pooled_sample$ypred1
-pred<-c(basement,first_floor)
-floor<-c(rep(0,length(basement)),rep(1,length(first_floor)))
-boxplot(pred~floor)
+basement<-pd$ypred0                                             #posterior predictive values - basement
+first_floor<-pd$ypred1                                          #posterior predictive values - first floor
 
+radon<-c(basement,first_floor)                                  #concatenate these
+floor<-c(rep(0,length(basement)),rep(1,length(first_floor)))    #indicator for floor
 
+ppostdf<-data.frame(radon,floor)                                #ggplot requires a data frame
+str(ppostdf)
+
+ggplot(ppostdf,aes(factor(floor),radon))+geom_boxplot()
+
+ggplot(ppostdf,aes(x=radon,colour=factor(floor)))+geom_density()
 @
 
 
