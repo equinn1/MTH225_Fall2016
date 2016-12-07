@@ -1,0 +1,33 @@
+\documentclass{article}
+
+\begin{document}
+
+<<>>=
+require(rstan)
+require(plyr)
+require(ggplot2)
+require(reshape2)
+@
+
+<<>>=
+x <- seq(-5, 5, 0.2)
+N <- length(x)
+eta_sq=1
+rho_sq=0.5
+sigma_sq=0.0001
+
+stanfit <- stan("Gaussian_process1.stan",chains=3,iter=200)
+pd <- extract(stanfit)
+str(pd)
+@
+
+<<>>=
+data <- adply(pd$y, 2)
+tmp <- melt(data)
+names(tmp) <- c("xid", "group", "y")
+tmp <- mutate(tmp, x=x[xid])
+fig2a <- ggplot(tmp, aes(x=x, y=y)) +
+    geom_line(aes(group=group), colour="#999999", alpha=0.3) + theme_bw()
+fig2a
+@
+\end{document}
